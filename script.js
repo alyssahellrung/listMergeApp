@@ -1,10 +1,30 @@
 // var list1 = ["apples", "Bananas", "rice", "crackers", "milk"];
 // var list2 = ["kiwi", "milk", "Bread", "bananas", "Rice"];
-var list1 = [];
-var list2 = [];
-var mergedList = [];
-const item1 = document.getElementById("item");
-const item2 = document.getElementById("item2");
+const list1Input = document.querySelector(".list1-input");
+const list1El = document.querySelector(".list1");
+const list2Input = document.querySelector(".list2-input");
+const list2El = document.querySelector(".list2");
+const combine = document.querySelector("#combine");
+
+function addList1Item(event) {
+  event.preventDefault();
+  const newList1Item = document.createElement("li");
+  newList1Item.innerText = list1Input.value;
+  list1El.appendChild(newList1Item);
+  if(list1Input.value === "") {
+    return null;
+  }
+}
+
+function addList2Item(event) {
+  event.preventDefault();
+  const newList2Item = document.createElement("li");
+  newList2Item.innerText = list2Input.value;
+  list2El.appendChild(newList2Item);
+  if(list2Input.value === "") {
+    return null;
+  }
+}
 
 function listMerge(list1, list2) {
   var lowerlist1 = list1.map(item => item.toLowerCase());
@@ -18,22 +38,19 @@ function listMerge(list1, list2) {
 }
 // console.log(listMerge(list1, list2));
 
-function addToList(e) {
-  e.preventDefault();
-  
-  list1.push(item);
-  console.log(list1);
-}
 
-function keydownHandler(event) {
-  if (event.keyCode === 13) {
-  console.log("Enter key pressed");
+list1Input.addEventListener("keydown", function(e) {
+  if (e.keyCode === 13) {
+    addList1Item(e);
+    e.currentTarget.value = "";
   }
-  addToList();
-}
+});
 
-window.addEventListener("keydown", keydownHandler);
+list2Input.addEventListener("keydown", function(e) {
+  if (e.keyCode === 13) {
+    addList2Item(e);
+  }
+});
 
-const combine = document.querySelector("#combine");
 combine.addEventListener("click", listMerge);
 
