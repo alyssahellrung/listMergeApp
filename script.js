@@ -6,6 +6,7 @@ const list1El = document.querySelector(".list1");
 const list2Input = document.querySelector(".list2-input");
 const list2El = document.querySelector(".list2");
 const combine = document.querySelector(".combine");
+const combinedEl = document.querySelector(".combined-list");
 
 function addList1Item(event) {
   event.preventDefault();
@@ -39,7 +40,15 @@ function listMerge() {
   });
   return(mergedList);  
 }
-console.log(listMerge(list1, list2));
+
+function renderCombined() {
+  combinedEl.innerText = "";
+  for (let i = 0; i < mergedList.length; i++) {
+    const newCombinedItem = document.createElement("li");
+    newCombinedItem.innerText = mergedList[i];
+    combinedEl.appendChild(newCombinedItem);
+  }
+}
 
 
 list1Input.addEventListener("keydown", function(e) {
@@ -56,5 +65,7 @@ list2Input.addEventListener("keydown", function(e) {
   }
 });
 
-combine.addEventListener("click", listMerge);
-
+combine.addEventListener("click", function(e) {
+  listMerge();
+  renderCombined();
+});
