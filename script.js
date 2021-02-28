@@ -1,5 +1,5 @@
-// var list1 = ["apples", "Bananas", "rice", "crackers", "milk"];
-// var list2 = ["kiwi", "milk", "Bread", "bananas", "Rice"];
+const list1 = [];
+const list2 = [];
 const list1Input = document.querySelector(".list1-input");
 const list1El = document.querySelector(".list1");
 const list2Input = document.querySelector(".list2-input");
@@ -9,6 +9,8 @@ const combine = document.querySelector("#combine");
 function addList1Item(event) {
   event.preventDefault();
   const newList1Item = document.createElement("li");
+  list1.push(list1Input.value);
+  console.log(list1);
   newList1Item.innerText = list1Input.value;
   list1El.appendChild(newList1Item);
   if(list1Input.value === "") {
@@ -19,6 +21,8 @@ function addList1Item(event) {
 function addList2Item(event) {
   event.preventDefault();
   const newList2Item = document.createElement("li");
+  list2.push(list2Input.value);
+  console.log(list2);
   newList2Item.innerText = list2Input.value;
   list2El.appendChild(newList2Item);
   if(list2Input.value === "") {
@@ -49,6 +53,7 @@ list1Input.addEventListener("keydown", function(e) {
 list2Input.addEventListener("keydown", function(e) {
   if (e.keyCode === 13) {
     addList2Item(e);
+    e.currentTarget.value = "";
   }
 });
 
