@@ -1,16 +1,16 @@
 const list1 = [];
 const list2 = [];
+const mergedList = [];
 const list1Input = document.querySelector(".list1-input");
 const list1El = document.querySelector(".list1");
 const list2Input = document.querySelector(".list2-input");
 const list2El = document.querySelector(".list2");
-const combine = document.querySelector("#combine");
+const combine = document.querySelector(".combine");
 
 function addList1Item(event) {
   event.preventDefault();
   const newList1Item = document.createElement("li");
   list1.push(list1Input.value);
-  console.log(list1);
   newList1Item.innerText = list1Input.value;
   list1El.appendChild(newList1Item);
   if(list1Input.value === "") {
@@ -22,7 +22,6 @@ function addList2Item(event) {
   event.preventDefault();
   const newList2Item = document.createElement("li");
   list2.push(list2Input.value);
-  console.log(list2);
   newList2Item.innerText = list2Input.value;
   list2El.appendChild(newList2Item);
   if(list2Input.value === "") {
@@ -30,9 +29,9 @@ function addList2Item(event) {
   }
 }
 
-function listMerge(list1, list2) {
-  var lowerlist1 = list1.map(item => item.toLowerCase());
-  var lowerlist2 = list2.map(item => item.toLowerCase());
+function listMerge() {
+  let lowerlist1 = list1.map(item => item.toLowerCase());
+  let lowerlist2 = list2.map(item => item.toLowerCase());
   
   lowerlist1.concat(lowerlist2).forEach(item => {
     if (mergedList.indexOf(item) == -1)
@@ -40,7 +39,7 @@ function listMerge(list1, list2) {
   });
   return(mergedList);  
 }
-// console.log(listMerge(list1, list2));
+console.log(listMerge(list1, list2));
 
 
 list1Input.addEventListener("keydown", function(e) {
